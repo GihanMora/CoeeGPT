@@ -140,7 +140,7 @@ elif uploaded_file:
     elif selected_mode == 'Create a chart':
 
         user_input = st.text_area(
-            "Briefly explain the plot that required.')
+            "Briefly explain the plot that required.")
 
         if st.button("Create a visualization"):
             try:
