@@ -61,16 +61,14 @@ def extract_code(gpt_response):
 
 
 # wide layout
-st.set_page_config(layout="wide", page_icon="🤖", page_title="Ask CSV")
+st.set_page_config(layout="wide", page_title="Cooee + ChatGPT")
 
-st.title("Ask Your Data 🤖 (GPT-powered)")
+st.title("Ask Cooee(ChatGPT Powered)")
 
 uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
 
 if uploaded_file is None:
-    st.info(f"""
-                👆 Upload a .csv file first. Sample to try: [sample_data.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vTeB7_jzJtacH3XrFh553m9ahL0e7IIrTxMhbPtQ8Jmp9gCJKkU624Uk1uMbCEN_-9Sf7ikd1a85wIK/pub?gid=0&single=true&output=csv)
-                """)
+    st.info(f"""Upload a .csv file to analyse""")
 
 
 elif uploaded_file:
@@ -104,9 +102,9 @@ elif uploaded_file:
 
     selected_mode = st.selectbox("What do you wanna do?", ["Ask your data", "Create a chart"])
 
-    if selected_mode == 'Ask your data':
+    if selected_mode == 'Question answering':
 
-        user_input = st.text_area("Write a concise and clear question about your data. For example: What is the total sales in the USA in 2022?", value='What is the total sales in the USA in 2022?')
+        user_input = st.text_area("Enter your question here")
 
 
         if st.button("Get Response"):
@@ -142,7 +140,7 @@ elif uploaded_file:
     elif selected_mode == 'Create a chart':
 
         user_input = st.text_area(
-            "Briefly explain what you want to plot from your data. For example: Plot total sales by country and product category", value='Plot total sales by country and product category')
+            "Briefly explain the plot that required.')
 
         if st.button("Create a visualization"):
             try:
@@ -166,18 +164,5 @@ elif uploaded_file:
                 #st.error(f"An error occurred: {e}")
                 #st.write(traceback.print_exc())
                 st.error('Oops, the GPT response resulted in an error :( Please try again with a different question.')
-
-
-st.write('')
-st.write('')
-st.write('')
-st.write('')
-st.write('')
-st.write('')
-# footer info
-# git hub repo
-st.markdown("The code is available in [GitHub repo](https://github.com/arsentievalex/ask-your-data-gpt)")
-st.markdown("Connect with me on [Twitter](https://twitter.com/alexarsentiev) or [LinkedIn](https://www.linkedin.com/in/oleksandr-arsentiev-5554b3168/). If you like this app, consider [buying me a coffee](https://www.buymeacoffee.com/arsentiev) ☕")
-
 
 
