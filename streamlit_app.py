@@ -100,7 +100,7 @@ elif uploaded_file:
     create_table(conn, df, table_name)
 
 
-    selected_mode = st.selectbox("What do you wanna do?", ["Ask your data", "Create a chart"])
+    selected_mode = st.selectbox("Select option to analyse given data?", ["Ask your data", "Create a chart"])
 
     if selected_mode == 'Question answering':
 
