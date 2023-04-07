@@ -217,7 +217,7 @@ elif uploaded_file:
 
             extracted_code = extract_code(gpt_response)
 
-            extracted_code = extracted_code.replace('fig.show()', 'st.plotly_chart(fig)')
+            extracted_code = extracted_code.replace('fig.show()', 'col2.plotly_chart(fig)')
 
             with col2.expander("Plotly code used for the visualization"):
                 col2.code(extracted_code)
