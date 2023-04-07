@@ -213,17 +213,18 @@ elif uploaded_file:
             gpt_input = 'Write code in Python using Plotly to address the following request: {} ' \
                         'Use df that has the following columns: {}. Do not use animation_group argument and return only code with no import statements and the data has been already loaded in a df variable'.format(user_input, cols)
 
-            gpt_response = generate_gpt_reponse(gpt_input, max_tokens=1500)
+            with st.spinner('Wait for it...'):
+                gpt_response = generate_gpt_reponse(gpt_input, max_tokens=1500)
 
-            extracted_code = extract_code(gpt_response)
+                extracted_code = extract_code(gpt_response)
 
-            extracted_code = extracted_code.replace('fig.show()', 'col2.plotly_chart(fig)')
+                extracted_code = extracted_code.replace('fig.show()', 'col2.plotly_chart(fig)')
 
-            with col2.expander("Plotly code used for the visualization"):
-                col2.code(extracted_code)
+                with col2.expander("Plotly code used for the visualization"):
+                    col2.code(extracted_code)
 
-            # execute code
-            exec(extracted_code)
+                # execute code
+                exec(extracted_code)
 
         except Exception as e:
             #st.error(f"An error occurred: {e}")
