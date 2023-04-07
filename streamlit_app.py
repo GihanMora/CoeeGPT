@@ -169,6 +169,41 @@ elif uploaded_file:
                 
     col1, col2 = st.columns(2)
     col1.header("Question Answering")
+    user_q = col1.text_area("Enter your question here")
+    if col1.button("Get Response"):
+            try:
+                # create gpt prompt
+                gpt_input = 'Write a sql lite query based on this question: {} The table name is my_table and the table has the following columns: {}. ' \
+                            'Return only a sql query and nothing else'.format(user_input, cols)
+
+                query = generate_gpt_reponse(gpt_input, max_tokens=200)
+                query_clean = extract_code(query)
+                result = run_query(conn, query_clean)
+
+                with col1.expander("SQL query used"):
+                    col1.code(query_clean)
+
+                # if result df has one row and one column
+                if result.shape == (1, 1):
+
+                    # get the value of the first row of the first column
+                    val = result.iloc[0, 0]
+
+                    # write one liner response
+                    col1.subheader('Your response: {}'.format(val))
+
+                else:
+                    col1.subheader("Your result:")
+                    col1.table(result)
+
+            except Exception as e:
+                #st.error(f"An error occurred: {e}")
+                col1.error('Oops, the GPT response resulted in an error :( Please try again with a different question.')
+    
+    
+    
+    
+    
     col2.header("Visualization")
 
 
