@@ -174,13 +174,13 @@ elif uploaded_file:
             try:
                 # create gpt prompt
                 gpt_input = 'Write a sql lite query based on this question: {} The table name is my_table and the table has the following columns: {}. ' \
-                            'Return only a sql query and nothing else'.format(user_input, cols)
+                            'Return only a sql query and nothing else'.format(user_q, cols)
 
                 query = generate_gpt_reponse(gpt_input, max_tokens=200)
                 query_clean = extract_code(query)
                 result = run_query(conn, query_clean)
 
-                with col1.expander("SQL query used"):
+                with col1.expander("SQL query used for the question"):
                     col1.code(query_clean)
 
                 # if result df has one row and one column
@@ -205,5 +205,29 @@ elif uploaded_file:
     
     
     col2.header("Visualization")
+    user_input = st.text_area("Add features that the plot would have.")
+
+    if col2.button("Create a visualization"):
+        try:
+            # create gpt prompt
+            gpt_input = 'Write code in Python using Plotly to address the following request: {} ' \
+                        'Use df that has the following columns: {}. Do not use animation_group argument and return only code with no import statements and the data has been already loaded in a df variable'.format(user_input, cols)
+
+            gpt_response = generate_gpt_reponse(gpt_input, max_tokens=1500)
+
+            extracted_code = extract_code(gpt_response)
+
+            extracted_code = extracted_code.replace('fig.show()', 'st.plotly_chart(fig)')
+
+            with col2.expander("Plotly code used for the visualization"):
+                col2.code(extracted_code)
+
+            # execute code
+            exec(extracted_code)
+
+        except Exception as e:
+            #st.error(f"An error occurred: {e}")
+            #st.write(traceback.print_exc())
+            col2.error('Oops, the GPT response resulted in an error :( Please try again with a different question.')
 
 
