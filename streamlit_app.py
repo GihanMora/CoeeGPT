@@ -213,7 +213,7 @@ elif uploaded_file:
             gpt_input = 'Write code in Python using Plotly to address the following request: {} ' \
                         'Use df that has the following columns: {}. Do not use animation_group argument and return only code with no import statements and the data has been already loaded in a df variable'.format(user_input, cols)
 
-            with st.spinner('Wait for it...'):
+            with col2.spinner('Wait for it...'):
                 gpt_response = generate_gpt_reponse(gpt_input, max_tokens=1500)
 
                 extracted_code = extract_code(gpt_response)
