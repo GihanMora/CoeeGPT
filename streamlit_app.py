@@ -205,7 +205,7 @@ elif uploaded_file:
     
     
     col2.header("Visualization")
-    user_input = st.text_area("Add features that the plot would have.")
+    user_input = col2.text_area("Add features that the plot would have.")
 
     if col2.button("Create a visualization"):
         try:
