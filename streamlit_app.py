@@ -63,11 +63,10 @@ def extract_code(gpt_response):
 # wide layout
 st.set_page_config(layout="wide", page_title="Cooee + ChatGPT")
 
-st.header("Ask Cooee")
-st.subheader("(ChatGPT Powered)")
+st.header("Ask Cooee(ChatGPT Powered)")
 st.write("---")
 uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
-
+st.write("---")
 if uploaded_file is None:
     st.info(f"""Upload a .csv file to analyse""")
 
@@ -99,9 +98,10 @@ elif uploaded_file:
     conn = create_connection(":memory:")
     table_name = "my_table"
     create_table(conn, df, table_name)
-
+    st.write("---")
 
     selected_mode = st.selectbox("Select option to analyse given data?", ["Ask your data", "Create a chart"])
+    st.write("---")
 
     if selected_mode == 'Question answering':
 
