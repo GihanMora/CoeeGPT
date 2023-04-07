@@ -165,5 +165,10 @@ elif uploaded_file:
                 #st.error(f"An error occurred: {e}")
                 #st.write(traceback.print_exc())
                 st.error('Oops, the GPT response resulted in an error :( Please try again with a different question.')
+                
+                
+    col1, col2 = st.columns(2)
+    col1.header("Question Answering")
+    col2.header("Visualization")
 
 
