@@ -100,72 +100,7 @@ elif uploaded_file:
     create_table(conn, df, table_name)
     st.write("---")
 
-    selected_mode = st.selectbox("Select option to analyse given data?", ["Question answering", "Visualization"])
-    st.write("---")
 
-    # if selected_mode == 'Question answering':
-    #
-    #     user_input = st.text_area("Enter your question here")
-    #
-    #
-    #     if st.button("Get Response"):
-    #         try:
-    #             # create gpt prompt
-    #             gpt_input = 'Write a sql lite query based on this question: {} The table name is my_table and the table has the following columns: {}. ' \
-    #                         'Return only a sql query and nothing else'.format(user_input, cols)
-    #
-    #             query = generate_gpt_reponse(gpt_input, max_tokens=200)
-    #             query_clean = extract_code(query)
-    #             result = run_query(conn, query_clean)
-    #
-    #             with st.expander("SQL query used"):
-    #                 st.code(query_clean)
-    #
-    #             # if result df has one row and one column
-    #             if result.shape == (1, 1):
-    #
-    #                 # get the value of the first row of the first column
-    #                 val = result.iloc[0, 0]
-    #
-    #                 # write one liner response
-    #                 st.subheader('Your response: {}'.format(val))
-    #
-    #             else:
-    #                 st.subheader("Your result:")
-    #                 st.table(result)
-    #
-    #         except Exception as e:
-    #             #st.error(f"An error occurred: {e}")
-    #             st.error('Oops, the GPT response resulted in an error :( Please try again with a different question.')
-    #
-    # elif selected_mode == 'Visualization':
-    #
-    #     user_input = st.text_area(
-    #         "Briefly explain the plot that required.")
-    #
-    #     if st.button("Create a visualization"):
-    #         try:
-    #             # create gpt prompt
-    #             gpt_input = 'Write code in Python using Plotly to address the following request: {} ' \
-    #                         'Use df that has the following columns: {}. Do not use animation_group argument and return only code with no import statements and the data has been already loaded in a df variable'.format(user_input, cols)
-    #
-    #             gpt_response = generate_gpt_reponse(gpt_input, max_tokens=1500)
-    #
-    #             extracted_code = extract_code(gpt_response)
-    #
-    #             extracted_code = extracted_code.replace('fig.show()', 'st.plotly_chart(fig)')
-    #
-    #             with st.expander("Code used"):
-    #                 st.code(extracted_code)
-    #
-    #             # execute code
-    #             exec(extracted_code)
-    #
-    #         except Exception as e:
-    #             #st.error(f"An error occurred: {e}")
-    #             #st.write(traceback.print_exc())
-    #             st.error('Oops, the GPT response resulted in an error :( Please try again with a different question.')
-                
                 
     col1, col2 = st.columns(2)
     col1.header("Question Answering")
