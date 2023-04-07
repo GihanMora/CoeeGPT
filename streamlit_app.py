@@ -65,8 +65,9 @@ st.set_page_config(layout="wide", page_title="Cooee + ChatGPT")
 
 st.header("Ask Cooee")
 st.subheader("(ChatGPT Powered)")
+st.divider()
 uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
-
+st.divider()
 if uploaded_file is None:
     st.info(f"""Upload a .csv file to analyse""")
 
