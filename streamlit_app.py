@@ -100,7 +100,7 @@ elif uploaded_file:
     create_table(conn, df, table_name)
     st.write("---")
 
-    selected_mode = st.selectbox("Select option to analyse given data?", ["Ask your data", "Create a chart"])
+    selected_mode = st.selectbox("Select option to analyse given data?", ["Question answering", "Visualization"])
     st.write("---")
 
     if selected_mode == 'Question answering':
@@ -138,7 +138,7 @@ elif uploaded_file:
                 #st.error(f"An error occurred: {e}")
                 st.error('Oops, the GPT response resulted in an error :( Please try again with a different question.')
 
-    elif selected_mode == 'Create a chart':
+    elif selected_mode == 'Visualization':
 
         user_input = st.text_area(
             "Briefly explain the plot that required.")
