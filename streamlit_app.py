@@ -132,7 +132,7 @@ elif uploaded_file:
                     col1.table(result)
 
             except Exception as e:
-                #st.error(f"An error occurred: {e}")
+                st.error(f"An error occurred: {e}")
                 col1.error('Oops, the GPT response resulted in an error :( Please try again with a different question.')
     
     
@@ -162,7 +162,7 @@ elif uploaded_file:
                 exec(extracted_code)
 
         except Exception as e:
-            #st.error(f"An error occurred: {e}")
+            st.error(f"An error occurred: {e}")
             #st.write(traceback.print_exc())
             col2.error('Oops, the GPT response resulted in an error :( Please try again with a different question.')
 
