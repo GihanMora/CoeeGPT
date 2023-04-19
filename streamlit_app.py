@@ -9,6 +9,8 @@ import numpy as np
 import re
 from dateutil.parser import parse
 import traceback
+from streamlit_chat import message
+
 
 # Storing the chat
 if 'generated' not in st.session_state:
