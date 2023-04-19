@@ -123,15 +123,7 @@ elif uploaded_file:
 
                 
                 query = generate_gpt_reponse(gpt_input, max_tokens=200)
-                # store the output 
-                st.session_state.past.append(gpt_input)
-                st.session_state.generated.append(query)
-                
-                if st.session_state['generated']:
-    
-                    for i in range(len(st.session_state['generated'])-1, -1, -1):
-                        message(st.session_state["generated"][i], key=str(i))
-                        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+
                 
                 
                 query_clean = extract_code(query)
@@ -188,4 +180,46 @@ elif uploaded_file:
             #st.write(traceback.print_exc())
             col2.error('Oops, the GPT response resulted in an error :( Please try again with a different question.')
 
+            
+def generate_response(prompt):
+    completions = openai.Completion.create(
+        engine = "text-davinci-003",
+        prompt = prompt,
+        max_tokens = 1024,
+        n = 1,
+        stop = None,
+        temperature=0.5,
+    )
+    message = completions.choices[0].text
+    return message 
 
+
+#Creating the chatbot interface
+st.title("chatBot : Streamlit + openAI")
+
+# Storing the chat
+if 'generated' not in st.session_state:
+    st.session_state['generated'] = []
+
+if 'past' not in st.session_state:
+    st.session_state['past'] = []
+
+# We will get the user's input by calling the get_text function
+def get_text():
+    input_text = st.text_input("You: ","Hello, how are you?", key="input")
+    return input_text
+
+
+user_input = get_text()
+
+if user_input:
+    output = generate_response(user_input)
+    # store the output 
+    st.session_state.past.append(user_input)
+    st.session_state.generated.append(output)
+    
+if st.session_state['generated']:
+    
+    for i in range(len(st.session_state['generated'])-1, -1, -1):
+        message(st.session_state["generated"][i], key=str(i))
+        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
