@@ -199,11 +199,11 @@ buff, col, buff2 = st.beta_columns([1,3,1])
 col.title("chatBot : Streamlit + openAI")
 
 # Storing the chat
-if 'generated' not in st.session_state:
-    st.session_state['generated'] = []
+if 'generated' not in col.session_state:
+    col.session_state['generated'] = []
 
-if 'past' not in st.session_state:
-    st.session_state['past'] = []
+if 'past' not in col.session_state:
+    col.session_state['past'] = []
 
 # We will get the user's input by calling the get_text function
 def get_text():
