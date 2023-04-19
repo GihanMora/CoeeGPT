@@ -10,7 +10,12 @@ import re
 from dateutil.parser import parse
 import traceback
 
+# Storing the chat
+if 'generated' not in st.session_state:
+    st.session_state['generated'] = []
 
+if 'past' not in st.session_state:
+    st.session_state['past'] = []
 
 def create_connection(db_name: str) -> Connection:
     conn = sqlite3.connect(db_name)
@@ -58,7 +63,10 @@ def extract_code(gpt_response):
     else:
         return gpt_response
 
-
+# We will get the user's input by calling the get_text function
+def get_text():
+    input_text = st.text_input("You: ","Hello, how are you?", key="input")
+    return input_text
 
 # wide layout
 st.set_page_config(layout="wide", page_title="Cooee + ChatGPT")
@@ -111,7 +119,19 @@ elif uploaded_file:
                 gpt_input = 'Write a sql lite query based on this question: {} The table name is my_table and the table has the following columns: {}. ' \
                             'Return only a sql query and nothing else'.format(user_q, cols)
 
+                
                 query = generate_gpt_reponse(gpt_input, max_tokens=200)
+                # store the output 
+                st.session_state.past.append(gpt_input)
+                st.session_state.generated.append(query)
+                
+                if st.session_state['generated']:
+    
+                    for i in range(len(st.session_state['generated'])-1, -1, -1):
+                        message(st.session_state["generated"][i], key=str(i))
+                        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+                
+                
                 query_clean = extract_code(query)
                 result = run_query(conn, query_clean)
 
