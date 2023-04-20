@@ -179,6 +179,9 @@ elif uploaded_file:
             st.error(f"An error occurred: {e}")
             #st.write(traceback.print_exc())
             col2.error('Oops, the GPT response resulted in an error :( Please try again with a different question.')
+            
+            
+      st.title("Conversational AI")
 
             
 # def generate_response(prompt):
@@ -196,7 +199,7 @@ elif uploaded_file:
 # buff, col, buff2 = st.beta_columns([1,3,1])
 
 #Creating the chatbot interface
-st.title("Conversational AI")
+
 
 # # Storing the chat
 # if 'generated' not in st.session_state:
