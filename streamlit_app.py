@@ -83,7 +83,7 @@ def generate_response(gpt_input):
             {"role": "user", "content": gpt_input},
         ]
     )
-    message = completions.choices[0].text
+    message = completion.choices[0].text
     return message
 
 
