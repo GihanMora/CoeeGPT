@@ -197,12 +197,8 @@ elif uploaded_file:
             
     st.header("Conversational AI")
 
- 
 
-
-# buff, col, buff2 = st.beta_columns([1,3,1])
-
-#Creating the chatbot interface
+    #Creating the chatbot interface
 
 
     # Storing the chat
@@ -214,7 +210,7 @@ elif uploaded_file:
 
     # We will get the user's input by calling the get_text function
     def get_text():
-        input_text = st.text_input("You: ","Hello, how are you?", key="input")
+        input_text = st.text_input("You: ",key="input")
         return input_text
 
 
