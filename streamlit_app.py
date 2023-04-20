@@ -202,15 +202,13 @@ elif uploaded_file:
 
 
     # Storing the chat
-    if 'generated' not in st.session_state:
-        st.session_state['generated'] = []
+    st.session_state['generated'] = []
 
-    if 'past' not in st.session_state:
-        st.session_state['past'] = []
+    st.session_state['past'] = []
 
     # We will get the user's input by calling the get_text function
     def get_text():
-        input_text = st.text_input("You: ",key="input")
+        input_text = st.text_input("You: ","",key="input")
         return input_text
 
 
