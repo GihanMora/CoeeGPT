@@ -210,10 +210,12 @@ elif uploaded_file:
 
     # We will get the user's input by calling the get_text function
     def get_text():
-        input_text = st.text_input("You: ","",key="input")
+        input_text = st.text_input("Type your message here: ","",key="input")
         return input_text
-
-
+    
+    # convert the dataframe into a string
+    df_str = df.to_string()
+    st.session_state.past.append(df_str)
     user_input = get_text()
 
     if user_input:
