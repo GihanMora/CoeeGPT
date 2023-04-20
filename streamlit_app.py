@@ -210,7 +210,7 @@ elif uploaded_file:
 
     # We will get the user's input by calling the get_text function
     def get_text():
-        input_text = col.text_input("You: ","Hello, how are you?", key="input")
+        input_text = st.text_input("You: ","Hello, how are you?", key="input")
         return input_text
 
 
