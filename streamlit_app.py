@@ -216,7 +216,7 @@ elif uploaded_file:
     # convert the dataframe into a string
     df_str = df.to_string()
     print(st.session_state.past)
-    st.session_state.past.append(df_str)
+    st.session_state.past.append(st.text_input("Type your message here: ",df_str,key="input"))
     user_input = get_text()
 
     if user_input:
