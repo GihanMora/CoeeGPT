@@ -196,7 +196,7 @@ elif uploaded_file:
 # buff, col, buff2 = st.beta_columns([1,3,1])
 
 #Creating the chatbot interface
-col.title("Conversational AI")
+st.title("Conversational AI")
 
 # # Storing the chat
 # if 'generated' not in st.session_state:
