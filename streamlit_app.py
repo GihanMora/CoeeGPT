@@ -216,7 +216,7 @@ elif uploaded_file:
     # convert the dataframe into a string
     df_str = df.to_string()
     print(st.session_state.past)
-    st.session_state.past.append(st.text_input("Type your message here: ",df_str,key="input"))
+    st.session_state.past.append(df_str)
     user_input = get_text()
 
     if user_input:
@@ -227,6 +227,6 @@ elif uploaded_file:
 
     if st.session_state['generated']:
 
-        for i in range(len(st.session_state['generated'])-1, -1, -1):
+        for i in range(len(st.session_state['generated']), -1, -1):
             message(st.session_state["generated"][i], key=str(i))
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
