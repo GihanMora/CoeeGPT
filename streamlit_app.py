@@ -215,7 +215,7 @@ elif uploaded_file:
     user_input = get_text()
 
     if user_input:
-        output = generate_response(user_input)
+        output = generate_gpt_reponse(user_input, 1024)
         # store the output 
         st.session_state.past.append(user_input)
         st.session_state.generated.append(output)
