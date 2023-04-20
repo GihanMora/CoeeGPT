@@ -183,18 +183,32 @@ elif uploaded_file:
             
     st.header("Conversational AI")
 
-            
-    def generate_response(prompt):
-        completions = openai.Completion.create(
-            engine = "text-davinci-003",
-            prompt = prompt,
-            max_tokens = 1024,
-            n = 1,
-            stop = None,
-            temperature=0.5,
+    def generate_response(gpt_input):
+
+        # load api key from secrets
+        openai.api_key = st.secrets["openai_api_key"]
+
+        completion = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            max_tokens=1024,
+            temperature=0,
+            messages=[
+                {"role": "user", "content": gpt_input},
+            ]
         )
         message = completions.choices[0].text
         return message 
+#     def generate_response(prompt):
+#         completions = openai.Completion.create(
+#             engine = "text-davinci-003",
+#             prompt = prompt,
+#             max_tokens = 1024,
+#             n = 1,
+#             stop = None,
+#             temperature=0.5,
+#         )
+#         message = completions.choices[0].text
+#         return message 
 
 # buff, col, buff2 = st.beta_columns([1,3,1])
 
