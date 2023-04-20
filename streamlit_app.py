@@ -206,17 +206,18 @@ elif uploaded_file:
         st.session_state['generated'] = []
 
     if 'past' not in st.session_state:
-        st.session_state['past'] = []
+        df_str = df.to_string()
+        st.session_state['past'] = [df_str]
 
     # We will get the user's input by calling the get_text function
     def get_text():
         input_text = st.text_input("Type your message here: ","",key="input")
         return input_text
     
-    # convert the dataframe into a string
-    df_str = df.to_string()
+#     # convert the dataframe into a string
+#     df_str = df.to_string()
     
-    st.session_state.past.append(df_str)
+#     st.session_state.past.append(df_str)
     user_input = get_text()
 
     if user_input:
@@ -228,6 +229,6 @@ elif uploaded_file:
     if st.session_state['generated']:
 
         for i in range(len(st.session_state['generated'])-1, -1, -1):
-            message(st.session_state['past'])
+#             message(st.session_state['past'])
             message(st.session_state["generated"][i], key=str(i))
             message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
