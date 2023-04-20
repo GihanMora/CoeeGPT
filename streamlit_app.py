@@ -181,7 +181,7 @@ elif uploaded_file:
             col2.error('Oops, the GPT response resulted in an error :( Please try again with a different question.')
             
             
-      st.title("Conversational AI")
+    st.title("Conversational AI")
 
             
 # def generate_response(prompt):
