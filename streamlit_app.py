@@ -215,7 +215,7 @@ elif uploaded_file:
     
     # convert the dataframe into a string
     df_str = df.to_string()
-    print(st.session_state.past)
+    console.log(st.session_state.past)
     st.session_state.past.append(df_str)
     user_input = get_text()
 
