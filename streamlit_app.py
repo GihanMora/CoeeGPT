@@ -87,7 +87,7 @@ def generate_response(prompt):
 # wide layout
 st.set_page_config(layout="wide", page_title="Cooee + ChatGPT")
 
-st.header("Ask Cooee(ChatGPT Powered)")
+st.header("Cooee External")
 st.write("---")
 uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
 st.write("---")
